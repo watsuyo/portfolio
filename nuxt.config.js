@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [{ src: '~assets/main.scss', lang: 'scss' }],
   /*
    ** Plugins to load before mounting the App
    */
@@ -40,7 +40,6 @@ export default {
    */
   modules: [
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
@@ -59,6 +58,9 @@ export default {
         features: {
           customProperties: false
         }
+      },
+      'postcss-custom-properties': {
+        warnings: false
       }
     },
     /*

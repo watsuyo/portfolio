@@ -1,68 +1,84 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        portfolio
-      </h1>
-      <h2 class="subtitle">
-        My cool Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div id="app">
+    <header>
+      <div class="navbar tabs is-toggle is-fullwidth">
+        <ul>
+          <li v-for="(tab, key) in tabs" :key="key" @click="chageTab(tab.key)">
+            {{ tab.title }}
+          </li>
+        </ul>
       </div>
-    </div>
+    </header>
+    <template v-if="currentTab === 'top'">
+      <Top>Top</Top>
+    </template>
+    <template v-if="currentTab === 'about'">
+      <About>About</About>
+    </template>
+    <template v-if="currentTab === 'works'">
+      <Works>Works</Works>
+    </template>
+    <template v-if="currentTab === 'skils'">
+      <Skils>Skils</Skils>
+    </template>
+    <template v-if="currentTab === 'outputs'">
+      <Outputs>Outputs</Outputs>
+    </template>
+    <template v-if="currentTab === 'contacts'">
+      <Contacts>Contact</Contacts>
+    </template>
   </div>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
+<script lang="ts">
+import Vue from 'vue'
+import Top from '~/components/Top.vue'
+import About from '~/components/About.vue'
+import Works from '~/components/Works.vue'
+import Skils from '~/components/Skils.vue'
+import Outputs from '~/components/Outputs.vue'
+import Contacts from '~/components/Contacts.vue'
 
-export default {
+export default Vue.extend({
   components: {
-    Logo
+    Top,
+    About,
+    Works,
+    Skils,
+    Outputs,
+    Contacts
+  },
+  data() {
+    return {
+      currentTab: 'top',
+      tabs: [
+        { title: 'Top', key: 'top' },
+        { title: 'About', key: 'about' },
+        { title: 'Works', key: 'works' },
+        { title: 'Skils', key: 'skils' },
+        { title: 'Outputs', key: 'outputs' },
+        { title: 'Contacts', key: 'contacts' }
+      ]
+    }
+  },
+  methods: {
+    chageTab(key) {
+      this.currentTab = key
+    }
   }
-}
+})
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.header {
+  position: fixed;
+  z-index: 10;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  color: #2c3e50;
 }
 </style>
