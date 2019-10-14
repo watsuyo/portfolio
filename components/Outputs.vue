@@ -1,57 +1,23 @@
 <template>
-  <div>
-    <div>
-      connpass
-    </div>
-    <div>
-      Qiita
-    </div>
-    <div>
-      note
-    </div>
+  <div class="group">
+    <Content :content-text="['connpass', 'Qiita', 'note']" :title="'Outputs'" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Content from '~/components/Content.vue'
+
 export default Vue.extend({
-  data() {
-    return {
-      items: [
-        {
-          title: 'Yotei-kun',
-          description: 'GitHubで認証でき、予定を作って出欠が取れるサービス',
-          link: 'https://mr-schedule-arranger.herokuapp.com/'
-        },
-        {
-          title: 'niiyama-project',
-          description:
-            'アーティストの活動休止を受け、ファンが想いを発信できるサイト',
-          link: 'https://niiyama-project-0210.firebaseapp.com/'
-        }
-      ]
-    }
+  components: {
+    Content
   }
 })
 </script>
 
-<style>
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.serviceTop {
-  padding: 5%;
+<style lang="scss" scoped>
+.group {
+  text-align: center;
+  margin-top: 15%;
 }
 </style>

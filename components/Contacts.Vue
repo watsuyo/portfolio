@@ -1,30 +1,26 @@
 <template>
-  <div>
-    k
+  <div class="group">
+    <Content
+      :content-text="['mail', 'Twitter']"
+      :title="'Contacts'"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend()
+import Content from '~/components/Content.vue'
+
+export default Vue.extend({
+  components: {
+    Content
+  }
+})
 </script>
 
-<style>
-h1 h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.contactTop {
-  padding: 5%;
+<style lang="scss" scoped>
+.group {
+  text-align: center;
+  margin-top: 15%;
 }
 </style>

@@ -1,62 +1,52 @@
 <template>
-  <div>
-    <div>
-      25 years old
-    </div>
-    <div>
-      Omnis, inc.
-    </div>
-    <div>
-      Front-End Engineer
-    </div>
+  <div class="group">
+    <Content
+      :content-text="[`${myOld} years old`, 'Omnis, inc', 'Front-End Engineer']"
+      :title="'About'"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Content from '~/components/Content.vue'
+
 export default Vue.extend({
+  components: {
+    Content
+  },
   data() {
     return {
-      abouts: [
-        {
-          title: 'Profile',
-          item1: 'Place of birth: 埼玉県',
-          item2: 'Sports: 野球(埼玉西武ライオンズ)',
-          item3: 'Music: 福山雅治、新山詩織、Awesome City Club'
-        },
-        {
-          title: 'Career',
-          item1: 'Job: 2019年1月からWebエンジニア',
-          item2: 'Languages: Vue.js,Node.js,Golang',
-          item3: 'Details... ',
-          url:
-            'https://www.wantedly.com/secret_profiles/Sv39_lCK1jbuki5TNuJScbujIjBvqQpU',
-          wantedly: 'Wantedlyに詳しい情報があります'
-        }
-      ]
+      myBirthday: {
+        year: 1994,
+        month: 6,
+        day: 2
+      }
+    }
+  },
+  computed: {
+    myOld() {
+      const { year, month, day } = this.myBirthday
+      const birthday = new Date(year, month, day)
+      const today = new Date()
+
+      const thisYearBirthday = new Date(
+        today.getFullYear(),
+        birthday.getMonth(),
+        birthday.getDate()
+      )
+
+      const age = today.getFullYear() - birthday.getFullYear()
+
+      return today < thisYearBirthday ? age - 1 : age
     }
   }
 })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.aboutTop {
-  padding: 5%;
+<style lang="scss" scoped>
+.group {
+  text-align: center;
+  margin-top: 15%;
 }
 </style>

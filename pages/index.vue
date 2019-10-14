@@ -1,32 +1,36 @@
 <template>
-  <div id="app">
-    <header>
-      <div class="navbar tabs is-toggle is-fullwidth">
-        <ul>
-          <li v-for="(tab, key) in tabs" :key="key" @click="chageTab(tab.key)">
-            {{ tab.title }}
-          </li>
-        </ul>
+  <div class="navigation">
+    <div class="navs">
+      <div
+        v-for="(nav, key) in navs"
+        :key="key"
+        class="item"
+        @click="chageTab(nav.key)"
+      >
+        {{ nav.title }}
       </div>
-    </header>
-    <template v-if="currentTab === 'top'">
-      <Top>Top</Top>
-    </template>
-    <template v-if="currentTab === 'about'">
-      <About>About</About>
-    </template>
-    <template v-if="currentTab === 'works'">
-      <Works>Works</Works>
-    </template>
-    <template v-if="currentTab === 'skils'">
-      <Skils>Skils</Skils>
-    </template>
-    <template v-if="currentTab === 'outputs'">
-      <Outputs>Outputs</Outputs>
-    </template>
-    <template v-if="currentTab === 'contacts'">
-      <Contacts>Contact</Contacts>
-    </template>
+    </div>
+
+    <div class="tabs">
+      <template v-if="currentTab === 'top'">
+        <Top />
+      </template>
+      <template v-if="currentTab === 'about'">
+        <About />
+      </template>
+      <template v-if="currentTab === 'works'">
+        <Works />
+      </template>
+      <template v-if="currentTab === 'skils'">
+        <Skils />
+      </template>
+      <template v-if="currentTab === 'outputs'">
+        <Outputs />
+      </template>
+      <template v-if="currentTab === 'contacts'">
+        <Contacts />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -51,7 +55,7 @@ export default Vue.extend({
   data() {
     return {
       currentTab: 'top',
-      tabs: [
+      navs: [
         { title: 'Top', key: 'top' },
         { title: 'About', key: 'about' },
         { title: 'Works', key: 'works' },
@@ -69,16 +73,26 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.header {
-  position: fixed;
-  z-index: 10;
+<style lang="scss" scoped>
+.navigation {
+  position: relative;
 }
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.navs {
   text-align: center;
-  color: #2c3e50;
+  margin: 10px 10px 10px 10px;
 }
+
+.nav {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+.item {
+  display: inline-block;
+  margin: 0px 9px;
+}
+// .tabs {
+//   margin-top: 10px;
+// }
 </style>
