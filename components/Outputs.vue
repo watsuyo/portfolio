@@ -18,6 +18,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .group {
   text-align: center;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 </style>
